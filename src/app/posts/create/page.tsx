@@ -1,11 +1,24 @@
-import { createPost } from "@/app/actions/posts";
+import { updatePost } from "@/app/actions/posts";
 import PostForm from "@/components/post-form";
+import { fetchPostById } from "@/db/queries/posts";
 
-export default function PostsCreate() {
+interface PostsEditProps {
+    params: {
+        id: string;
+    };
+}
+
+export default async function PostsEdit({ params }: PostsEditProps) {
+    const { id } = params;
+
+    const post = await fetchPostById(id)
+
+    const updateAction = updatePost.bind(null, id)
+
     return (
-        <main className="flex min-h-screen flex-col items-start p-24">
-            <div className="mb-32 text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-                <PostForm formAction={createPost} initialData={{ title: '', content: '' }} />
+        <main className="min-h-screen flex items-center justify-center bg-white dark:bg-gray-800 p-8">
+            <div className="w-full max-w-md mx-auto bg-gray-100 dark:bg-gray-900 p-6 rounded-lg shadow-md">
+                <PostForm formAction={updateAction} initialData={{ title: post?.title ?? '', content: post?.content ?? '' }} />
             </div>
         </main>
     );
