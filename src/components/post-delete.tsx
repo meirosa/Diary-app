@@ -12,7 +12,10 @@ export default function PostDelete({ id }: PostDeleteProps) {
         deletePost(id);
     };
 
-    return <form onSubmit={deleteAction}>
-        <button type="submit" className="text-sm opacity-30 text-red-500">Delete</button>
-    </form>
+    return (
+        <form onSubmit={deleteAction}>
+    <button type="submit" className="text-sm opacity-30 text-red-600 font-bold border border-black rounded px-2 py-1">Delete</button>
+</form>
+
+    );
 }
