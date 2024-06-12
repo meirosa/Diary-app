@@ -18,7 +18,7 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background-color: white; /* Mengganti dengan warna putih */
+  background-color: #99dbe4; /* Change background color to #99dbe4 */
 }
 
 @layer utilities {
